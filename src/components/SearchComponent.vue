@@ -42,17 +42,20 @@
 
 	  
 	methods: {
-		/*
+		
     	filteredList: function () {
-			//var vm = this
-			return fruits.filter(function (fruit) {
-			return fruit.toLowerCase().indexOf(query.toLowerCase()) !== -1
-      })*/
+			var vm = this
+			return vm.data.fruits.filter(function (fruit) {
+			return fruit.toLowerCase().indexOf(vm.data.input.toLowerCase()) !== -1
+      })
+	}
+	  /*
 	   filteredList: function  () {
 		return fruits.filter((fruit) =>
 		fruit.toLowerCase().includes(input.toLowerCase())
 		);
-	  }
+	  }*/
+
 	}
 }
 
