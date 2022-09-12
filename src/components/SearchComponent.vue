@@ -1,67 +1,45 @@
 <template>
-	<div>
-	<input type="text" v-model="input" placeholder="Search fruits..." />
-	
-   <div class="item fruit" v-for="fruit in filteredList()" :key="fruit">
-	 <p>{{ fruit }}</p>
-   </div>
-
-   <div class="item error" v-if="input&&!filteredList().length">
-	  <p>No results found!</p>
-   </div>
-   </div>
- </template>
-
-
-
-<script>
-
-	const fruits = ["apple", "banana", "orange"];
-	const input = ''
-
-
-	export default {
-		
-		
-	  name: 'SearchComponent',
-	  props: {
+	<div id="app">
+	  <div>
+		  <input type="text" v-model="query" placeholder="Search fruits..." />
+		<div class="item fruit" v-for="fruit in filteredList" :key="fruit.msg">
+			<p>{{ fruit.msg }}</p>
+		</div>
+	  </div>
+	  <div class="item error" v-if="query && !filteredList.length">
+		  <p>No results found!</p>
+	  </div>
+	</div>
+  </template>
+  
+  <script>
+  export default {
+	name: 'SearchComponent',
+	props: {
 		msg: String
-		
-	  },
+	},
 
-	  data: {
-		input: '',
-
+	data() {
+	  return {
+		query: '',
 		fruits: [
-			{ msg: 'appel'},
-			{ msg: 'peer'},
-			{ msg: 'aardbei'}
+		  { msg: 'appel'},
+		  { msg: 'peer'},
+		  { msg: 'aardbei'}
 		]
-		
+	  }
+	  
 	  },
 
-	  
-	methods: {
-		
-    	filteredList: function () {
-			var vm = this
-			return vm.data.fruits.filter(function (fruit) {
-			return fruit.toLowerCase().indexOf(vm.data.input.toLowerCase()) !== -1
-      })
-	}
-	  /*
-	   filteredList: function  () {
-		return fruits.filter((fruit) =>
-		fruit.toLowerCase().includes(input.toLowerCase())
-		);
-	  }*/
-
-	}
-}
-
-
-	
-	</script>
+	computed: {
+	  filteredList() {
+			  return this.fruits.filter((item) => {
+				return item.msg.toLowerCase().indexOf(this.query.toLowerCase()) !== -1
+		})
+		}
+	  }
+  };
+  </script>
 
 <style>
 
