@@ -13,6 +13,8 @@
   </template>
   
   <script>
+	import { mapMutations, mapGetters } from 'vuex'
+	
   export default {
 	name: 'SearchComponent',
 	props: {
@@ -21,22 +23,40 @@
 
 	data() {
 	  return {
-		query: '',
-		fruits: [
-		  { msg: 'appel'},
-		  { msg: 'peer'},
-		  { msg: 'aardbei'}
-		]
+	
 	  }
-	  
+
 	  },
 
 	computed: {
-	  filteredList() {
+
+		...mapGetters([
+      'filteredList'
+      // ...
+    ]),
+		query: {
+			set (value) {
+				this.setQuery(value);
+			},
+
+			get () {
+				return this.$store.state.query;
+			}
+		},
+
+	/*  filteredList() {
 			  return this.fruits.filter((item) => {
 				return item.msg.toLowerCase().indexOf(this.query.toLowerCase()) !== -1
 		})
-		}
+		}*/
+
+		
+	  },
+
+	  methods: {
+		...mapMutations([
+  			 'setQuery'
+   			 ]),
 	  }
   };
   </script>
