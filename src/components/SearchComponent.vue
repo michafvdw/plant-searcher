@@ -13,7 +13,7 @@
 		  <p>No results found!</p>
 	  </div>
 	  <input v-model="fruit">
-	  <button @click="addPlants">
+	  <button @click=" () => addPlants(fruit)">
           New plant
         </button>
 
