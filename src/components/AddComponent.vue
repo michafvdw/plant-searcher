@@ -1,58 +1,33 @@
 <template>
 	<div id="app">
 	  <div>
-		  <input type="text" v-model="query" placeholder="Search plants..." />
-		<div v-for="(fruits, index) in $store.state.fruits" :key="index">
-		<div class="item fruit" v-for="fruit in filteredList" :key="fruit.msg">			
+	  <input v-model="fruit">
+	  <button @click=" () => addPlants(fruit)">
+          New plant
+        </button>
 
-			<img v-bind:src= "fruit.img" /> 
-			<p>{{ fruit.msg }}</p> 
-			<button @click="deletePlants(index)">
-            Delete task
-          </button>
-		  </div>
-		</div>
-	  </div>
-	  <div class="item error" v-if="query && !filteredList.length">
-		  <p>No results found!</p>
-	  </div>
-
-
+	</div>
 	</div>
   </template>
   
   <script>
-	import { mapMutations, mapGetters } from 'vuex'
+	import { mapMutations } from 'vuex'
 	
   export default {
-	name: 'SearchComponent',
+	name: 'AddComponent',
 	props: {
 		msg: String
 	},
 
 	computed: {
 
-		...mapGetters([
-      'filteredList'
-      // ...
-    ]),
-		query: {
-			set (value) {
-				this.setQuery(value);
-			},
-
-			get () {
-				return this.$store.state.query;
-			}
-		},
 
 		
 	  },
 
 	  methods: {
 		...mapMutations([
-  			 'setQuery',
-			 'deletePlants'
+			 'addPlants'
    			 ]),
 
 			 
