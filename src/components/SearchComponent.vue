@@ -1,14 +1,22 @@
 <template>
 	<div id="app">
 	  <div>
-		  <input type="text" v-model="query" placeholder="Search fruits..." />
+		  <input type="text" v-model="query" placeholder="Search plants..." />
 		<div class="item fruit" v-for="fruit in filteredList" :key="fruit.msg">
-			<p>{{ fruit.msg }}</p>
+			<p>{{ fruit.msg }}</p> 
+			<button @click="deletePlants(index)">
+            Delete task
+          </button>
 		</div>
 	  </div>
 	  <div class="item error" v-if="query && !filteredList.length">
 		  <p>No results found!</p>
 	  </div>
+	  <input v-model="fruits">
+	  <button @click="addPlants">
+          New plant
+        </button>
+
 	</div>
   </template>
   
@@ -20,13 +28,6 @@
 	props: {
 		msg: String
 	},
-
-	data() {
-	  return {
-	
-	  }
-
-	  },
 
 	computed: {
 
@@ -42,7 +43,9 @@
 			get () {
 				return this.$store.state.query;
 			}
-		},
+		}
+
+
 
 	/*  filteredList() {
 			  return this.fruits.filter((item) => {
@@ -55,8 +58,13 @@
 
 	  methods: {
 		...mapMutations([
-  			 'setQuery'
+  			 'setQuery',
+			 'addPlants',
+			 'deletePlants',
+			 'setPlants'
    			 ]),
+
+		
 	  }
   };
   </script>
@@ -74,7 +82,7 @@
 	body {
 	  padding: 20px;
 	  min-height: 100vh;
-	  background-color: rgb(234, 242, 255);
+	  background-color: rgb(182, 224, 182);
 	}
 	
 	input {
@@ -102,7 +110,7 @@
 	}
 	
 	.fruit {
-	  background-color: rgb(97, 62, 252);
+	  background-color: rgb(106, 173, 137);
 	  cursor: pointer;
 	}
 	

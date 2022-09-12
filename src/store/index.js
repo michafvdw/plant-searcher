@@ -8,17 +8,30 @@ export default new Vuex.Store({
   state: {
 		query: '',
 		fruits: [
-		  { msg: 'appel'},
-		  { msg: 'peer'},
-		  { msg: 'aardbei'}
+		  { msg: 'Monstera'},
+		  { msg: 'Aloe vera'},
+		  { msg: 'Bonsai'},
+		  { msg: 'Cactus'},
+		  { msg: 'Bananenplant'},
+		  { msg: 'Ficus'},
+		  { msg: 'Calathea'},
 		]
 
   },
 
   mutations: {
+
 	setQuery(state, value ) {
 		state.query = value;
-	}
+	},
+
+	addPlants(state) {
+		state.fruits.push('Banana')
+	}, 
+
+	deletePlants (state, index){
+		state.fruits.splice(index, 1);
+	},
   },
 
   getters: {
