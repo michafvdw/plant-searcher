@@ -113,6 +113,15 @@
 	  background-color: rgb(106, 173, 137);
 	  cursor: pointer;
 	}
+
+	button {
+		background-color: rgb(32, 83, 56);
+		border-radius: 5px;
+		margin: 0 auto 10px auto;
+		font-size: 16px;
+		color: white;
+		padding: 5px 10px;
+	}
 	
 	.error {
 	  background-color: tomato;
