@@ -12,7 +12,7 @@
 	  <div class="item error" v-if="query && !filteredList.length">
 		  <p>No results found!</p>
 	  </div>
-	  <input v-model="fruits">
+	  <input v-model="fruit">
 	  <button @click="addPlants">
           New plant
         </button>
@@ -43,15 +43,7 @@
 			get () {
 				return this.$store.state.query;
 			}
-		}
-
-
-
-	/*  filteredList() {
-			  return this.fruits.filter((item) => {
-				return item.msg.toLowerCase().indexOf(this.query.toLowerCase()) !== -1
-		})
-		}*/
+		},
 
 		
 	  },

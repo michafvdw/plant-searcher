@@ -25,9 +25,7 @@ export default new Vuex.Store({
 		state.query = value;
 	},
 
-	addPlants(state) {
-		state.fruits.push('Banana')
-	}, 
+	addPlants(state, fruit) { state.fruits.push({ msg: fruit }) },
 
 	deletePlants (state, index){
 		state.fruits.splice(index, 1);
