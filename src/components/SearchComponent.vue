@@ -1,14 +1,26 @@
 <template>
 	<div id="app">
 	  <div>
-		  <input type="text" v-model="query" placeholder="Search plants..." />
-		<div v-for="(fruits, index) in $store.state.fruits" :key="index">
-		<div class="item fruit" v-for="fruit in filteredList" :key="fruit.msg">			
+		
+		<form action="#">
+      <label for="lang">filter between tags:</label>
+      <select v-model="selected" name="plants" id="lang">
+	
+		<option class="item plant" v-for="tag in filteredTags" :key="tag" :value="tag">{{tag}}</option>
+      </select>
+      <input type="submit" value="Submit" @click="filteredList"/>
+		</form>
 
-			<img v-bind:src= "fruit.img" /> 
-			<p>{{ fruit.msg }}</p> 
+
+		  <input type="text" v-model="query" placeholder="Search plants..." />
+		<div v-for="(plants, index) in $store.state.plants" :key="index">
+		
+		<div class="item plant" v-for="plant in filteredList" :key="plant.msg">			
+
+			<img v-bind:src= "plant.img" /> 
+			<p>{{ plant.msg }}</p> 
 			<button @click="deletePlants(index)">
-            Delete task
+            Delete plant
           </button>
 		  </div>
 		</div>
@@ -30,10 +42,18 @@
 		msg: String
 	},
 
+	data () {
+		return {
+			selected: null
+		}
+	},
+
 	computed: {
 
 		...mapGetters([
-      'filteredList'
+      'filteredList',
+	  'filteredTags',
+	  'filteredTags2'
       // ...
     ]),
 		query: {
@@ -46,16 +66,36 @@
 			}
 		},
 
+		tag: {
+			set (value) {
+				this.setTag(value);
+			},
+
+			get () {
+				return this.$store.state.tag;
+			}
+		},
+
+		
+
 		
 	  },
 
 	  methods: {
 		...mapMutations([
   			 'setQuery',
-			 'deletePlants'
+			 'deletePlants',
+			 'setTag'
    			 ]),
 
-			 
+			onClick () {
+				console.log('hoi')
+
+				
+				///return this.$store.getters.hardPlants;
+				
+				
+			} 
 
 		
 	  }
@@ -102,7 +142,7 @@
 		rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 	}
 	
-	.fruit {
+	.plant {
 	  background-color: rgb(106, 173, 137);
 	  cursor: pointer;
 	}
@@ -123,6 +163,25 @@
 		color: white;
 		padding: 5px 10px;
 	}
+	
+	label {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin: 0 auto;
+   }
+
+   select {
+        margin-bottom: 10px;
+        margin-top: 10px;
+        font-family: cursive, sans-serif;
+        outline: 0;
+        background: #2ecc71;
+        color: #fff;
+        border: 1px solid rgb(0, 83, 32);
+        padding: 4px;
+        border-radius: 9px;
+      }
 	
 	.error {
 	  background-color: tomato;

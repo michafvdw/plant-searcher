@@ -7,20 +7,25 @@ export default new Vuex.Store({
 	strict: true,
   state: {
 		query: '',
+		tag: '',
 
-		fruits: [
+		plants: [
 		  { 
 			img: "https://cdn.webshopapp.com/shops/29478/files/361778137/650x650x2/hydroplant-monstera-obliqua.jpg",
-		     msg: 'Monstera'},
+		     msg: 'Monstera',
+			tags: 'easy'},
 		  {
 			img: "https://mevrouwmonstera.nl/wp-content/uploads/2020/05/Aloe-ferox.jpg",
-			msg: 'Aloe vera'},
+			msg: 'Aloe vera',
+			tags: 'easy'},
 		  {
 			img: "https://www.plantje.nl/wp-content/uploads/2022/04/bonsai-ficus-51024.jpg",
-			msg: 'Bonsai'},
+			msg: 'Bonsai',
+			tags: 'hard'},
 		  { 
 			img: "https://images.prismic.io/rbnl/0737820a-d068-4588-8898-1c168f49a15d_cactus-plant-in-pot.jpg?auto=compress,format&rect=0,0,1000,1000&w=500&h=500",
-			msg: 'Cactus'},
+			msg: 'Cactus',
+			tags: 'easy'},
 		],
 
   },
@@ -31,20 +36,49 @@ export default new Vuex.Store({
 		state.query = value;
 	},
 
-	addPlants(state, fruit) { state.fruits.push({ msg: fruit }) },
+	setTag (state, value) {
+		state.tag = value
+	},
+
+	addPlants(state, plant) { state.plants.push({ msg: plant }) },
 
 	deletePlants (state, index){
-		state.fruits.splice(index, 1);
+		state.plants.splice(index, 1);
 	},
   },
 
   getters: {
 
   filteredList (state) {
-	return state.fruits.filter((item) => {
-		return item.msg.toLowerCase().indexOf(state.query.toLowerCase()) !== -1
+	return state.plants.filter((item) => {
+		return item.msg.toLowerCase().indexOf(state.query.toLowerCase()) !== -1 && item.tags.toLowerCase().indexOf(state.tag.toLowerCase()) !== -1
 		})
-  }
+  },
+
+  filteredTags (state) {
+	//todo filter tags and remove duplicates
+	/*
+	return state.plants.filter((item) => {
+		return  [ ...new Set(item.tags)] 
+	})*/
+	/*const collection = state.plants.filter((item) => {
+		return (item.tags.toLowerCase().indexOf(state.tag.toLowerCase()) !== -1)
+	}).map( (x) => x.tags );
+	*/
+	return Array.from(new Set(state.plants.map( (x) => x.tags)));
+
+  },	
+
+  allPlants: state => {
+	return state.plants
+  },
+  easyPlants: state=>{
+	 return state.plants.filter(plants=>plants.tags=='easy')
+  },
+ hardPlants: state=>{
+   return state.plants.filter(plants=>plants.tags=='hard')
+ }
+
 
   },
   actions: {
