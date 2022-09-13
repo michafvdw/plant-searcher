@@ -2,18 +2,18 @@
 	<div id="app">
 	  <div>
 		
-		<form action="#">
-      <label for="lang">filter between tags:</label>
-      <select v-model="selected" name="plants" id="lang">
 	
-		<option class="item plant" v-for="tag in filteredTags" :key="tag" :value="tag">{{tag}}</option>
-      </select>
-      <input type="submit" value="Submit" @click="filteredList"/>
-		</form>
+
+		<select v-model="tag" name="plants" id="lang">
+			<option disabled value="">Please select one</option>
+			<option class="item plant" v-for="tag in filteredTags" :key="tag" :value="tag">{{tag}}</option>
+
+			</select>
 
 
 		  <input type="text" v-model="query" placeholder="Search plants..." />
-		<div v-for="(plants, index) in $store.state.plants" :key="index">
+
+		<div>
 		
 		<div class="item plant" v-for="plant in filteredList" :key="plant.msg">			
 
