@@ -1,8 +1,9 @@
 <template>
 	<div id="app">
 	  <div>
-	  <input v-model="fruit">
-	  <button @click=" () => addPlants(fruit)">
+	  <input v-model="plant">
+	 
+	  <button :disabled="plant === null" @click=" () => addPlants( {msg: plant})">
           New plant
         </button>
 
@@ -17,6 +18,12 @@
 	name: 'AddComponent',
 	props: {
 		msg: String
+	},
+
+	data () {
+		return {
+			plant: null
+		}
 	},
 
 	computed: {
@@ -77,7 +84,7 @@
 		rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 	}
 	
-	.fruit {
+	.plant {
 	  background-color: rgb(106, 173, 137);
 	  cursor: pointer;
 	}
@@ -99,7 +106,4 @@
 		padding: 5px 10px;
 	}
 	
-	.error {
-	  background-color: tomato;
-	}
 	</style>

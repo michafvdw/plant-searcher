@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
 	strict: true,
@@ -40,9 +40,14 @@ export default new Vuex.Store({
 		state.tag = value
 	},
 
-	addPlants(state, plant) { state.plants.push({ msg: plant }) },
+	addPlants(state, item) { 
+		console.log("HOI")
+		state.plants.push(item)
+
+	 },
 
 	deletePlants (state, index){
+		
 		state.plants.splice(index, 1);
 	},
   },
@@ -51,7 +56,7 @@ export default new Vuex.Store({
 
   filteredList (state) {
 	return state.plants.filter((item) => {
-		return item.msg.toLowerCase().indexOf(state.query.toLowerCase()) !== -1 && item.tags.toLowerCase().indexOf(state.tag.toLowerCase()) !== -1
+		return item.msg.toLowerCase().indexOf(state.query.toLowerCase()) !== -1 && (item.tags && item.tags.toLowerCase().indexOf(state.tag.toLowerCase()) !== -1 ? true : false || true)
 		})
   },
 

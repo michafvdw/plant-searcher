@@ -11,17 +11,18 @@
 			</select>
 
 
-		  <input type="text" v-model="query" placeholder="Search plants..." />
 
-		<div>
-		
-		<div class="item plant" v-for="plant in filteredList" :key="plant.msg">			
+
+		  <input type="text" v-model="query" placeholder="Search plants..." />
+	
+		  <div>
+			<div class="item plant" v-for="plant in filteredList" :key="plant.msg">	
 
 			<img v-bind:src= "plant.img" /> 
 			<p>{{ plant.msg }}</p> 
-			<button @click="deletePlants(index)">
-            Delete plant
-          </button>
+		
+			<button @click="deletePlants(index)">Delete plant</button>
+
 		  </div>
 		</div>
 	  </div>
@@ -34,7 +35,8 @@
   </template>
   
   <script>
-	import { mapMutations, mapGetters } from 'vuex'
+	import { ninvoke } from 'q';
+import { mapMutations, mapGetters } from 'vuex'
 	
   export default {
 	name: 'SearchComponent',
@@ -44,7 +46,8 @@
 
 	data () {
 		return {
-			selected: null
+			selected: null,
+			index: null
 		}
 	},
 
