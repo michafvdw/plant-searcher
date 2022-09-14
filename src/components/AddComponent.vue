@@ -1,11 +1,18 @@
 <template>
 	<div id="app">
 	  <div>
+		<select v-model="selectedTags">
+			<option disabled value="">Please select one</option>
+			<option class="item plant" value="easy">easy</option>
+			<option class="item plant" value="hard">hard</option>
+
+			</select>
 	  <input v-model="plant">
-	 
-	  <button :disabled="plant === null" @click=" () => addPlants( {msg: plant})">
+
+	  <button :disabled="plant === null" @click=" () => addPlants( {msg: plant, tags: selectedTags })">
           New plant
         </button>
+		<p>{{selectedTags}}</p>
 
 	</div>
 	</div>
@@ -22,7 +29,8 @@
 
 	data () {
 		return {
-			plant: null
+			plant: null,
+			selectedTags: null
 		}
 	},
 

@@ -56,7 +56,7 @@ export default new Vuex.Store({
 
   filteredList (state) {
 	return state.plants.filter((item) => {
-		return item.msg.toLowerCase().indexOf(state.query.toLowerCase()) !== -1 && (item.tags && item.tags.toLowerCase().indexOf(state.tag.toLowerCase()) !== -1 ? true : false || true)
+		return item.msg.toLowerCase().indexOf(state.query.toLowerCase()) !== -1 && (item.tags && item.tags.toLowerCase().indexOf(state.tag.toLowerCase()) !== -1 ? true : false )
 		})
   },
 
@@ -73,16 +73,6 @@ export default new Vuex.Store({
 	return Array.from(new Set(state.plants.map( (x) => x.tags)));
 
   },	
-
-  allPlants: state => {
-	return state.plants
-  },
-  easyPlants: state=>{
-	 return state.plants.filter(plants=>plants.tags=='easy')
-  },
- hardPlants: state=>{
-   return state.plants.filter(plants=>plants.tags=='hard')
- }
 
 
   },

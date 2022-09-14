@@ -43,16 +43,13 @@ import { mapMutations, mapGetters } from 'vuex'
 	props: {
 		msg: String
 	},
-
 	data () {
 		return {
 			selected: null,
 			index: null
 		}
 	},
-
 	computed: {
-
 		...mapGetters([
       'filteredList',
 	  'filteredTags',
@@ -63,50 +60,40 @@ import { mapMutations, mapGetters } from 'vuex'
 			set (value) {
 				this.setQuery(value);
 			},
-
 			get () {
 				return this.$store.state.query;
 			}
 		},
-
 		tag: {
 			set (value) {
 				this.setTag(value);
 			},
-
 			get () {
 				return this.$store.state.tag;
 			}
 		},
-
 		
-
 		
 	  },
-
 	  methods: {
 		...mapMutations([
   			 'setQuery',
 			 'deletePlants',
 			 'setTag'
    			 ]),
-
 			onClick () {
 				console.log('hoi')
-
 				
 				///return this.$store.getters.hardPlants;
 				
 				
 			} 
-
 		
 	  }
   };
   </script>
 
 <style>
-
 	
 	* {
 	  padding: 0;
@@ -149,15 +136,12 @@ import { mapMutations, mapGetters } from 'vuex'
 	  background-color: rgb(106, 173, 137);
 	  cursor: pointer;
 	}
-
 	img {
 		border: 1px solid #ddd;
 		border-radius: 4px;
 		padding: 5px;
 		width: 150px;
-
 	}
-
 	button {
 		background-color: rgb(32, 83, 56);
 		border-radius: 5px;
@@ -173,7 +157,6 @@ import { mapMutations, mapGetters } from 'vuex'
      justify-content: center;
      margin: 0 auto;
    }
-
    select {
         margin-bottom: 10px;
         margin-top: 10px;
